@@ -40,6 +40,13 @@ services:
     Symfony\Bridge\PsrHttpMessage\HttpMessageFactoryInterface: '@cas.psrhttpfactory'
     Symfony\Bridge\PsrHttpMessage\HttpFoundationFactoryInterface: '@cas.httpfoundationfactory'
 
+    cas.authenticator:
+        class: EcPhp\CasBundle\Security\CasAuthenticator
+        arguments:
+            $cas: '@cas'
+            $uriFactory: '@cas.psr17_factory'
+            $serverRequestFactory: '@cas.psr17_factory'
+
     cas.guardauthenticator:
         class: EcPhp\CasBundle\Security\CasGuardAuthenticator
         arguments:

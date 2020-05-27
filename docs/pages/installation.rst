@@ -47,6 +47,20 @@ Edit the security settings of your application by edition the file `config/packa
 .. code-block:: yaml
 
     security:
+        enable_authenticator_manager: true
+        firewalls:
+            main:
+                custom_authenticator: cas.authenticator
+
+        access_control:
+            - { path: ^/api, role: ROLE_CAS_AUTHENTICATED }
+            - { path: ^/admin, role: ROLE_CAS_AUTHENTICATED }
+
+Symfony security guards will be soon deprecated. Even though, here's a configuration example if you wish to use them:
+
+.. code-block:: yaml
+
+    security:
         firewalls:
             main:
                 anonymous: ~
